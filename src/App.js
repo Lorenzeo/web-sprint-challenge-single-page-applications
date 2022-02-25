@@ -17,6 +17,8 @@ import axios from 'axios'
   const initialFormErrors = {
     name: '',
     instructions: '',
+    size:'',
+    
   }
 
 const initialDisabled = true

@@ -48,18 +48,23 @@ const OrderForm = (props) =>{
                             onChange={onChange}
                         />
                     </label>
+                    
                     <label>
-                        Size 
-                    </label>
-                        <select
+                        Size
+                          <select
                             id='size-dropdown'
-                            name='Size'
+                            name='size'
+                            value={values.size}
+                            onChange={onChange}
                             >
+                            <option value=''>- selection -</option>
                             <option value= 'small'> Small </option>
                             <option value= 'medium'> Medium </option>
                             <option value= 'large'> Large </option>
                             <option value= 'x-large'> Extra Large </option>
-                     </select>
+                          </select>
+                    </label>
+                       
 {/*
                             // value={values.name}
                             // onChange={onChange} */}
@@ -69,7 +74,7 @@ const OrderForm = (props) =>{
                         Pepperoni
                         <input
                             type="checkbox"
-                            value={values.topping1}
+                            checked={values.topping1}
                             name='topping1'
                             onChange={onChange}
                           />
@@ -78,7 +83,7 @@ const OrderForm = (props) =>{
                         Sausage
                         <input
                             type="checkbox"
-                            value={values.topping2}
+                            checked={values.topping2}
                             name='topping2'
                             onChange={onChange}
                         />
@@ -87,7 +92,7 @@ const OrderForm = (props) =>{
                         Bacon
                         <input
                             type="checkbox"
-                            value={values.topping3}
+                            checked={values.topping3}
                             name='topping3'
                             onChange={onChange}
                           />
@@ -96,7 +101,7 @@ const OrderForm = (props) =>{
                         Extra Cheese
                         <input
                             type="checkbox"
-                            value={values.topping4}
+                            checked={values.topping4}
                             name='topping4'
                             onChange={onChange}
                         />
@@ -106,20 +111,18 @@ const OrderForm = (props) =>{
                         <input 
                             id="special-text"
                             type="text"
-                            name="submit"
+                            name="instructions"
                             onChange={onChange}
                             value={values.instructions}
                         />
                     </label>
                     <label>
-                        Submit
+                        Add to Order
                         <input 
                              disabled = {disabled}
                              id="order-button"
                              type="submit"
                              name="submit"
-                             onChange={onChange}
-                             onSubmit={onSubmit}
                         />
             </label>
                         

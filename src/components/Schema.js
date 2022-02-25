@@ -11,6 +11,16 @@ const formSchema = yup.object().shape({
     .string()
     .trim(),
 
+    size: yup
+    .string()
+    .oneOf(['small', 'medium', 'large', 'x-large'], 'Pick a Size'),
+
+    topping1: yup.boolean(),
+    topping2: yup.boolean(),
+    topping3: yup.boolean(),
+    topping4: yup.boolean()
+
+
 })
 
 export default formSchema;
