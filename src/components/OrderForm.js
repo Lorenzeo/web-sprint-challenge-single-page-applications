@@ -1,57 +1,104 @@
-import React, {useState, useEffect} from 'react'
+import React from 'react'
 
 
-const OrderForm = () =>{
+// const initialFormValues = {
+//     name: '',
+//     size: '',
+//     password: '',
+//     topping1: false,
+//     topping2: false,
+//     topping3: false,
+//     topping4: false
+//   }
 
-    const [form, setForm] = useState({
-        name: "",
-        size: "",
-        topping1: false,
-        topping2: false,
-        special: "",
-    })
+
+
+
+
+const OrderForm = (props) =>{
+    const{errors, values, change, submit, disabled} = props
+   
+    const onSubmit = evt =>{
+        evt.preventDefault()
+        submit()
+    }
+
+    const onChange = evt => {
+        const { name, value, type, checked }= evt.target
+        const valueToUse = type === 'checkbox' ? checked : value;
+        change(name, valueToUse);
+    }
 
     return(
-            <article>
-                <p>Pizza Order Form</p>
-                <form>
+            
+                <form id = 'pizza-form'>
+
+             <div className='errors'>
+                <div>{errors.name}</div>
+             </div>  
+           
 
                     <label>
                         Name
                         <input
                             id='name-input'
                             type="text"
-                            // value={values.name}
+                            value={values.name}
                             name='name'
-                            // onChange={onChange}
+                            onChange={onChange}
                         />
                     </label>
                     <label>
-                        Size
-                        <input
+                        Size 
+                    </label>
+                        <select
                             id='size-dropdown'
-                            type="text"
+                            name='Size'
+                            >
+                            <option value= 'small'> Small </option>
+                            <option value= 'medium'> Medium </option>
+                            <option value= 'large'> Large </option>
+                            <option value= 'x-large'> Extra Large </option>
+                     </select>
+{/*
                             // value={values.name}
-                            name='name'
-                            // onChange={onChange}
-                        />
-                    </label>
+                            // onChange={onChange} */}
+                        
+                   
                     <label>
-                        Topping One
+                        Pepperoni
                         <input
-                            type="text"
-                            // value={values.name}
-                            name='name'
-                            // onChange={onChange}
+                            type="checkbox"
+                            value={values.topping1}
+                            name='topping1'
+                            onChange={onChange}
                           />
                     </label>
                     <label>
-                        Topping Two
+                        Sausage
                         <input
-                            type="text"
-                            // value={values.name}
-                            name='name'
-                            // onChange={onChange}
+                            type="checkbox"
+                            value={values.topping2}
+                            name='topping2'
+                            onChange={onChange}
+                        />
+                    </label>
+                    <label>
+                        Bacon
+                        <input
+                            type="checkbox"
+                            value={values.topping3}
+                            name='topping3'
+                            onChange={onChange}
+                          />
+                    </label>
+                    <label>
+                        Extra Cheese
+                        <input
+                            type="checkbox"
+                            value={values.topping4}
+                            name='topping4'
+                            onChange={onChange}
                         />
                     </label>
                     <label>
@@ -60,24 +107,26 @@ const OrderForm = () =>{
                             id="special-text"
                             type="text"
                             name="submit"
-                            // onChange={onChange}
+                            onChange={onChange}
+                            value={values.instructions}
                         />
                     </label>
                     <label>
                         Submit
                         <input 
+                             disabled = {disabled}
                              id="order-button"
                              type="submit"
                              name="submit"
-                             
-                          // onChange={onChange}
+                             onChange={onChange}
+                             onSubmit={onSubmit}
                         />
             </label>
                         
                    
                     
                 </form>
-            </article>
+            
     )
 }
 
